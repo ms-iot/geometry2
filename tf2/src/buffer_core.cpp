@@ -323,14 +323,14 @@ int BufferCore::walkToTopParent(F& f, ros::Time time, CompactFrameID target_id,
   if (source_id == target_id)
   {
     f.finalize(Identity, time);
-    return tf2_msgs::TF2Error::NO_ERROR;
+    return tf2_msgs::TF2Error::NO_ERRORS;
   }
 
   //If getting the latest get the latest common time
   if (time == ros::Time())
   {
     int retval = getLatestCommonTime(target_id, source_id, time, error_string);
-    if (retval != tf2_msgs::TF2Error::NO_ERROR)
+    if (retval != tf2_msgs::TF2Error::NO_ERRORS)
     {
       return retval;
     }
@@ -370,7 +370,7 @@ int BufferCore::walkToTopParent(F& f, ros::Time time, CompactFrameID target_id,
     if (frame == target_id)
     {
       f.finalize(TargetParentOfSource, time);
-      return tf2_msgs::TF2Error::NO_ERROR;
+      return tf2_msgs::TF2Error::NO_ERRORS;
     }
 
     f.accum(true);
@@ -432,7 +432,7 @@ int BufferCore::walkToTopParent(F& f, ros::Time time, CompactFrameID target_id,
         // Reverse it before returning because this is the reverse walk.
         std::reverse(frame_chain->begin(), frame_chain->end());
       }
-      return tf2_msgs::TF2Error::NO_ERROR;
+      return tf2_msgs::TF2Error::NO_ERRORS;
     }
 
     f.accum(false);
@@ -504,7 +504,7 @@ int BufferCore::walkToTopParent(F& f, ros::Time time, CompactFrameID target_id,
     }
   }
   
-  return tf2_msgs::TF2Error::NO_ERROR;
+  return tf2_msgs::TF2Error::NO_ERRORS;
 }
 
 
@@ -622,7 +622,7 @@ geometry_msgs::TransformStamped BufferCore::lookupTransform(const std::string& t
   std::string error_string;
   TransformAccum accum;
   int retval = walkToTopParent(accum, time, target_id, source_id, &error_string);
-  if (retval != tf2_msgs::TF2Error::NO_ERROR)
+  if (retval != tf2_msgs::TF2Error::NO_ERRORS)
   {
     switch (retval)
     {
@@ -781,7 +781,7 @@ bool BufferCore::canTransformNoLock(CompactFrameID target_id, CompactFrameID sou
   }
 
   CanTransformAccum accum;
-  if (walkToTopParent(accum, time, target_id, source_id, error_msg) == tf2_msgs::TF2Error::NO_ERROR)
+  if (walkToTopParent(accum, time, target_id, source_id, error_msg) == tf2_msgs::TF2Error::NO_ERRORS)
   {
     return true;
   }
@@ -1005,7 +1005,7 @@ int BufferCore::getLatestCommonTime(CompactFrameID target_id, CompactFrameID sou
       time = cache->getLatestTimestamp();
     else
       time = ros::Time();
-    return tf2_msgs::TF2Error::NO_ERROR;
+    return tf2_msgs::TF2Error::NO_ERRORS;
   }
 
   std::vector<P_TimeAndFrameID> lct_cache;
@@ -1051,7 +1051,7 @@ int BufferCore::getLatestCommonTime(CompactFrameID target_id, CompactFrameID sou
       {
         time = ros::Time();
       }
-      return tf2_msgs::TF2Error::NO_ERROR;
+      return tf2_msgs::TF2Error::NO_ERRORS;
     }
 
     ++depth;
@@ -1111,7 +1111,7 @@ int BufferCore::getLatestCommonTime(CompactFrameID target_id, CompactFrameID sou
       {
         time = ros::Time();
       }
-      return tf2_msgs::TF2Error::NO_ERROR;
+      return tf2_msgs::TF2Error::NO_ERRORS;
     }
 
     ++depth;
@@ -1158,7 +1158,7 @@ int BufferCore::getLatestCommonTime(CompactFrameID target_id, CompactFrameID sou
   }
 
   time = common_time;
-  return tf2_msgs::TF2Error::NO_ERROR;
+  return tf2_msgs::TF2Error::NO_ERRORS;
 }
 
 std::string BufferCore::allFramesAsYAML(double current_time) const
@@ -1593,7 +1593,7 @@ void BufferCore::_chainAsVector(const std::string & target_frame, ros::Time targ
   std::vector<CompactFrameID> source_frame_chain;
   int retval = walkToTopParent(accum, source_time, fixed_id, source_id, &error_string, &source_frame_chain);
 
-  if (retval != tf2_msgs::TF2Error::NO_ERROR)
+  if (retval != tf2_msgs::TF2Error::NO_ERRORS)
   {
     switch (retval)
     {
@@ -1612,7 +1612,7 @@ void BufferCore::_chainAsVector(const std::string & target_frame, ros::Time targ
   std::vector<CompactFrameID> target_frame_chain;
   retval = walkToTopParent(accum, target_time, target_id, fixed_id, &error_string, &target_frame_chain);
 
-  if (retval != tf2_msgs::TF2Error::NO_ERROR)
+  if (retval != tf2_msgs::TF2Error::NO_ERRORS)
   {
     switch (retval)
     {
