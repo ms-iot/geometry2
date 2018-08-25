@@ -3,6 +3,9 @@ project(tf2_bullet)
 
 find_package(PkgConfig REQUIRED)
 
+if(MSVC)
+find_package(bullet REQUIRED)
+else()
 set(bullet_FOUND 0)
 pkg_check_modules(bullet bullet)
 if(NOT bullet_FOUND)
