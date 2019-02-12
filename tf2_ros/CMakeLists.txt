@@ -39,7 +39,7 @@ catkin_package(
 include_directories(include ${catkin_INCLUDE_DIRS})
 
 # tf2_ros library
-add_library(${PROJECT_NAME} STATIC
+add_library(${PROJECT_NAME}
   src/buffer.cpp
   src/transform_listener.cpp
   src/buffer_client.cpp
