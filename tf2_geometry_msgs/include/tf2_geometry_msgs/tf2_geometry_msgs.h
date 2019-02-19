@@ -48,8 +48,6 @@
 
 #include "ros/macros.h"
 
-#include <array>
-
 namespace tf2
 {
 
