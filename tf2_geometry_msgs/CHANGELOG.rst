@@ -2,6 +2,14 @@
 Changelog for package tf2_geometry_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.6.5 (2018-11-16)
+------------------
+* Fix python3 import error
+* Contributors: Timon Engelke
+
+0.6.4 (2018-11-06)
+------------------
+
 0.6.3 (2018-07-09)
 ------------------
 * Changed access to Vector to prevent memory leak (`#305 <https://github.com/ros/geometry2/issues/305>`_)

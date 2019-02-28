@@ -46,9 +46,9 @@
 #include <geometry_msgs/WrenchStamped.h>
 #include <kdl/frames.hpp>
 
-#include "ros/macros.h"
-
 #include <array>
+
+#include "ros/macros.h"
 
 namespace tf2
 {
