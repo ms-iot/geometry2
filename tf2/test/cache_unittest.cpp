@@ -29,7 +29,9 @@
 
 #include <gtest/gtest.h>
 #include <tf2/time_cache.h>
+#ifndef _WIN32
 #include <sys/time.h>
+#endif
 #include "tf2/LinearMath/Quaternion.h"
 #include <stdexcept>
 
