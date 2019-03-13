@@ -29,7 +29,9 @@
 
 #include <gtest/gtest.h>
 #include <tf2_ros/transform_listener.h>
+#ifndef _WIN32
 #include <sys/time.h>
+#endif
 
 using namespace tf2;
 

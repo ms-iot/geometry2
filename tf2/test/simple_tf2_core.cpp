@@ -29,7 +29,9 @@
 
 #include <gtest/gtest.h>
 #include <tf2/buffer_core.h>
+#ifndef _WIN32
 #include <sys/time.h>
+#endif
 #include <ros/ros.h>
 #include "tf2/LinearMath/Vector3.h"
 #include "tf2/exceptions.h"

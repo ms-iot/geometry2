@@ -30,7 +30,9 @@
 #include <gtest/gtest.h>
 #include <tf2/buffer_core.h>
 #include "tf2/exceptions.h"
+#ifndef _WIN32
 #include <sys/time.h>
+#endif
 #include <ros/ros.h>
 #include "LinearMath/btVector3.h"
 #include "LinearMath/btTransform.h"
@@ -288,10 +290,11 @@ TEST(BufferCore_setTransform, NoInsertWithNan)
   tranStamped.header.frame_id = "same_frame";
   tranStamped.child_frame_id = "other_frame";
   EXPECT_TRUE(mBC.setTransform(tranStamped, "authority"));
+#ifndef _MSC_VER // C2124: divide or mod by zero
   tranStamped.transform.translation.x = 0.0/0.0;
   EXPECT_TRUE(std::isnan(tranStamped.transform.translation.x));
   EXPECT_FALSE(mBC.setTransform(tranStamped, "authority"));
-
+#endif
 }
 
 TEST(BufferCore_setTransform, NoInsertWithNoFrameID)
