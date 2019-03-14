@@ -34,6 +34,8 @@
 #include <sys/time.h>
 #endif
 #include <rosgraph_msgs/Clock.h>
+#include <chrono>
+#include <thread>
 
 using namespace tf2;
 
@@ -42,7 +44,7 @@ void spin_for_a_second()
   ros::spinOnce();
   for (uint8_t i = 0; i < 10; ++i)
   {
-    usleep(100);
+    std::this_thread::sleep_for(std::chrono::microseconds(100));
     ros::spinOnce();
   }
 }
