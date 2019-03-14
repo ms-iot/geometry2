@@ -32,7 +32,6 @@
 #ifndef _WIN32
 #include <sys/time.h>
 #endif
-#include <ros/ros.h>
 #include "tf2/LinearMath/Vector3.h"
 #include "tf2/exceptions.h"
 
