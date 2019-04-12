@@ -145,7 +145,7 @@ set_target_properties(tf2_py PROPERTIES
 # )
 
 
-install(FILES $<TARGET_LINKER_FILE:tf2_py>
+install(FILES $<TARGET_FILE:tf2_py>
   DESTINATION ${CATKIN_PACKAGE_PYTHON_DESTINATION}
 )
 
